@@ -2,7 +2,7 @@
 ## failures 0
 ## cut
 
-$foo, @bar, %baz;
+$foo, @bar, $#bar, %baz;
 
 ## name NoReuseSlice
 ## failures 0
@@ -33,7 +33,7 @@ $foo, @foo, %foo;
 ## failures 2
 ## cut
 
-$foo, @foo, $foo, @foo;
+$foo, $#foo, $foo;
 
 ## name ReuseSlice
 ## failures 4
@@ -55,3 +55,15 @@ $foo{bar}, $$foo{bar};
 
 @foo[0,1], @$foo[0,1];
 @foo{'bar','baz'}, @$foo{'bar','baz'};
+
+## name ReuseIndex
+## failures 2
+## cut
+
+%foo, $#foo;
+
+## name ReuseIndexRef
+## failures 2
+## cut
+
+@foo, $#$foo;

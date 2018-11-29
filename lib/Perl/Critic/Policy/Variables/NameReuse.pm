@@ -42,10 +42,11 @@ sub violates {
 	}
 
 	foreach my $name (keys %seen) {
-		if (keys %{$seen{$name}} > 1) {
-			my @sorted = sort { (($a->logical_line_number // 0) <=> ($b->logical_line_number // 0))
-				|| (($a->visual_column_number // 0) <=> ($b->visual_column_number // 0)) } values %{$seen{$name}};
-			push @violations, $self->violation("Reused variable name '$name' for '@{[$_->symbol]}'", EXPL, $_) for @sorted;
+		my $by_actual = $seen{$name};
+		if (keys %$by_actual > 1) {
+			my @sorted = sort { (($by_actual->{$a}->logical_line_number // 0) <=> ($by_actual->{$b}->logical_line_number // 0))
+				|| (($by_actual->{$a}->visual_column_number // 0) <=> ($by_actual->{$b}->visual_column_number // 0)) } keys %$by_actual;
+			push @violations, $self->violation("Reused variable name '$name' for '$_'", EXPL, $by_actual->{$_}) for @sorted;
 		}
 	}
 	
