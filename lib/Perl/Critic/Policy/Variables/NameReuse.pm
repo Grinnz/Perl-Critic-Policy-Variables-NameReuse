@@ -3,7 +3,7 @@ package Perl::Critic::Policy::Variables::NameReuse;
 use strict;
 use warnings;
 
-our $VERSION = 'v0.1.0';
+our $VERSION = 'v0.1.1';
 
 use Perl::Critic::Utils qw(:severities :classification :ppi);
 use parent 'Perl::Critic::Policy';
