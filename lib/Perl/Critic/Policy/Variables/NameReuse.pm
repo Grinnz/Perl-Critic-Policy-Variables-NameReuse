@@ -25,16 +25,16 @@ sub violates {
 	foreach my $symbol (@$symbols) {
 		next if $symbol->isa('PPI::Token::Magic'); # skip magic variables
 		my $actual = $symbol->symbol;
-		next if $actual =~ m/::/; # ignore globals for now
-		(my $name = $actual) =~ s/^[\$\@\%\&\*]//;
+		next if $actual =~ m/::/; # let's not concern ourselves with fully qualified package variables
+		(my $name = $actual) =~ s/^[\$\@\%]// or next;
 		next if $name eq 'INC' or $name eq 'ARGV';
 		$seen{$name}{$actual} //= $symbol;
 	}
 
 	my $indexes = $elem->find('PPI::Token::ArrayIndex') || [];
 	foreach my $symbol (@$indexes) {
-		next if $symbol =~ m/::/; # ignore globals for now
-		(my $name = $symbol) =~ s/^\$\#//;
+		next if $symbol =~ m/::/; # let's not concern ourselves with fully qualified package variables
+		(my $name = $symbol) =~ s/^\$\#// or next;
 		next if $name =~ m/^\W$/; # skip magic variables
 		next if $name eq 'INC' or $name eq 'ARGV';
 		my $actual = '@' . $name;
