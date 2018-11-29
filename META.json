@@ -62,6 +62,17 @@
       }
    },
    "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/Grinnz/Perl-Critic-Policy-Variables-NameReuse/issues"
+      },
+      "homepage" : "https://github.com/Grinnz/Perl-Critic-Policy-Variables-NameReuse",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/Grinnz/Perl-Critic-Policy-Variables-NameReuse.git",
+         "web" : "https://github.com/Grinnz/Perl-Critic-Policy-Variables-NameReuse"
+      }
+   },
    "version" : "v0.1.0",
    "x_Dist_Zilla" : {
       "perl" : {
