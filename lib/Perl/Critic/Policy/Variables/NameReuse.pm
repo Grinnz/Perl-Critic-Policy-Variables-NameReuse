@@ -72,11 +72,11 @@ types of variables
 
 =head1 DESCRIPTION
 
-This policy checks for the existence of multiple variables with the same name
-in a file. This can be confusing especially when accessing elements of
-variables or using L<list or key-value slices|perldata/Slices>. For example,
-the code could access both C<$foo> and C<$foo[0]> but these actually refer to
-the unrelated variables C<$foo> and C<@foo>.
+This L<Perl::Critic> policy checks for the existence of multiple variables with
+the same name in a file. This can be confusing especially when accessing
+elements of variables or using L<list or key-value slices|perldata/Slices>. For
+example, the code could access both C<$foo> and C<$foo[0]> but these actually
+refer to the unrelated variables C<$foo> and C<@foo>.
 
   my $foo = @foo;             # not ok
   my @bar = @bar{'a','b'};    # not ok
